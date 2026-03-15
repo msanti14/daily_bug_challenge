@@ -128,6 +128,14 @@ def github_request(method: str, endpoint: str, payload: dict | None = None):
 
 
 def create_issue(bug: dict) -> dict:
+    difficulty_label = {
+        "Fácil": "facil",
+        "Media": "media",
+        "Difícil": "dificil",
+    }.get(bug["difficulty"], "media")
+
+    category_label = bug["category"].lower()[:20]
+
     return github_request(
         "POST",
         f"/repos/{REPO_OWNER}/{REPO_NAME}/issues",
@@ -135,7 +143,7 @@ def create_issue(bug: dict) -> dict:
             "title": f"[Bug {TODAY}] {bug['title']}",
             "body": build_issue_body(bug),
             "assignees": [ASSIGNEE],
-            "labels": ["daily-bug",],
+            "labels": ["daily-bug", difficulty_label, category_label],
         },
     )
 
