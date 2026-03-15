@@ -26,6 +26,7 @@ jobs:
       - name: Generate bug, create issue & send email
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
           EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}

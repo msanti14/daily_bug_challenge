@@ -6,13 +6,14 @@ import urllib.error
 from datetime import date
 
 # ── Config ────────────────────────────────────────────────────────────────────
-GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
+GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]   # para crear issues
+GH_PAT            = os.environ["GH_PAT"]          # para llamar a GitHub Models
 SENDGRID_API_KEY  = os.environ["SENDGRID_API_KEY"]
 EMAIL_RECEIVER    = os.environ["EMAIL_RECEIVER"]
-EMAIL_SENDER      = os.environ["EMAIL_SENDER"]   # tu Gmail verificado en SendGrid
+EMAIL_SENDER      = os.environ["EMAIL_SENDER"]
 
 REPO_OWNER = "msanti14"
-REPO_NAME  = "daily-bug-challenge"
+REPO_NAME  = "daily_bug_challenge"
 ASSIGNEE   = "msanti14"
 
 BUG_CATEGORIES = ["Python puro", "FastAPI / backend", "tests con errores"]
@@ -56,7 +57,7 @@ def call_github_models(system: str, user: str) -> dict:
         data=payload,
         headers={
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Authorization": f"Bearer {GH_PAT}",  # PAT para GitHub Models
         },
     )
     with urllib.request.urlopen(req) as resp:
