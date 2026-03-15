@@ -135,7 +135,7 @@ def create_issue(bug: dict) -> dict:
             "title": f"[Bug {TODAY}] {bug['title']}",
             "body": build_issue_body(bug),
             "assignees": [ASSIGNEE],
-            "labels": ["daily-bug", bug["difficulty"].lower(), bug["category"].lower()[:20]],
+            "labels": ["daily-bug",],
         },
     )
 
